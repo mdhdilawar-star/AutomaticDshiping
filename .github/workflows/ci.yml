@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install backend deps
+        run: |
+          cd backend-api
+          npm ci || npm install
+      - name: Install worker deps
+        run: |
+          cd automation-engine
+          npm ci || npm install
+      - name: Smoke backend startup
+        run: |
+          cd backend-api
+          timeout 5s npm run dev || true

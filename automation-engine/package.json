@@ -1,0 +1,14 @@
+{
+  "name": "automation-engine",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node src/worker.js",
+    "start": "node src/worker.js"
+  },
+  "dependencies": {
+    "bullmq": "^5.10.3",
+    "dotenv": "^16.4.5",
+    "ioredis": "^5.4.1"
+  }
+}
