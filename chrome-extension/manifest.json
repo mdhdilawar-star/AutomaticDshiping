@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "DropPilot Automation",
+  "version": "0.1.0",
+  "description": "Product scraping and one-click import for multi-marketplace dropshipping.",
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "DropPilot"
+  },
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": [
+    "https://*.aliexpress.com/*",
+    "https://*.amazon.*/*",
+    "https://*.ebay.*/*",
+    "https://*.daraz.pk/*",
+    "https://*.alibaba.com/*",
+    "https://*.cjdropshipping.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.aliexpress.com/*",
+        "https://*.amazon.*/*",
+        "https://*.ebay.*/*",
+        "https://*.daraz.pk/*",
+        "https://*.alibaba.com/*",
+        "https://*.cjdropshipping.com/*"
+      ],
+      "js": ["src/content/index.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_page": "options/options.html"
+}
